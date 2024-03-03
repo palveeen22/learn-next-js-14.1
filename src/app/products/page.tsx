@@ -2,6 +2,7 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface Product {
   id: number;
@@ -34,17 +35,20 @@ const Page = () => {
         <div className='w-full flex'>
           <div className='grid grid-cols-4 gap-4'>
             {products?.map((product: Product) => (
-              <div key={product?.id}>
-                <Image
-                  src={product.image}
-                  alt={product.title}
-                  className="object-cover"
-                  width={200}
-                  height={200}
-                  priority
-                />
-                <div>{product?.title}</div>
-              </div>
+              <Link href={`/products/${product?.title}`}>
+                <div key={product?.id}>
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    className="object-cover"
+                    width={200}
+                    height={200}
+                    priority
+                  />
+                  <div>{product?.title}</div>
+                </div>
+              </Link>
+
             ))}
           </div>
         </div>
