@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface Product {
+export interface Product {
   id: number;
   title: string;
   price: number;
@@ -35,7 +35,7 @@ const Page = () => {
         <div className='w-full flex'>
           <div className='grid grid-cols-4 gap-4'>
             {products?.map((product: Product) => (
-              <Link href={`/products/${product?.title}`}>
+              <Link href={`/products/${product?.id}`}>
                 <div key={product?.id}>
                   <Image
                     src={product.image}
