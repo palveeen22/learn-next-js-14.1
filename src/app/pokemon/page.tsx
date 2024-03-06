@@ -8,6 +8,14 @@ export interface Pokemon {
 };
 
 
+export interface ResponPoke {
+    count: number
+    next: string
+    previous: null
+    results: Pokemon[]
+}
+
+
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/effect-cards';
@@ -17,15 +25,25 @@ import './styles.css';
 // import required modules
 import { EffectCards } from 'swiper/modules';
 import { useQuery } from '@tanstack/react-query';
+import Image from 'next/image';
+import { Product } from '../products/page';
 
 const page = () => {
-    const { data: pokemons, isLoading } = useQuery<Pokemon[]>({
-        queryKey: ['pokemons'],
-        queryFn: () => fetch('https://pokeapi.co/api/v2/ability').then((resp) => resp.json()),
-    })
+    // const { data: pokemons, isLoading } = useQuery<ResponPoke>({
+    //     queryKey: ['pokemons'],
+    //     queryFn: () => fetch('https://pokeapi.co/api/v2/ability').then((resp) => resp.json()),
+    // })
 
+    const { data: products, isLoading } = useQuery<Product[]>({
+        queryKey: ['products'],
+        // Mengambil data dari endpoint yang sesuai
+        queryFn: () => fetch('https://fakestoreapi.com/products').then((resp) => resp.json()),
+    });
 
-    console.log(pokemons, "<<<<");
+    // Assuming pokemons is an object containing the API response
+
+    // console.log(pokemons?.results, "<<<<");
+    // const list = pokemons?.results
     return (
         <div className='flex justify-center items-center min-h-screen'>
             <Swiper
@@ -34,7 +52,24 @@ const page = () => {
                 modules={[EffectCards]}
                 className="mySwiper"
             >
-                <SwiperSlide>Slide 1</SwiperSlide>
+                {products?.map((data) => {
+                    return (
+                        <SwiperSlide>
+                            <div className='p-2 flex flex-col items-center'>
+                                <Image
+                                    src={data?.image}
+                                    alt={data?.title}
+                                    className="object-cover"
+                                    width={50}
+                                    height={50}
+                                    priority
+                                />
+                                <p>{data?.title}</p>
+                            </div>
+
+                        </SwiperSlide>
+                    )
+                })}
             </Swiper>
         </div>
     )
