@@ -28,6 +28,9 @@ const Page = () => {
     <div>
       <h1 className='text-4xl'>Lists</h1>
       <h2 className='text-xl text-muted'>Lists you have created</h2>
+      <Link href={'/create-product'}>
+        <button className=" border border-white rounded p-3">Create</button>
+      </Link>
       {isLoading && (
         <div>Loading</div>
       )}

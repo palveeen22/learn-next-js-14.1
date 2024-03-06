@@ -11,6 +11,9 @@ export default function Home() {
       <Link href={'/products'}>
         <button className=" border border-white rounded p-3">To Products</button>
       </Link>
+      <Link href={'/pokemon'}>
+        <button className=" border border-white rounded p-3">To Pokemon</button>
+      </Link>
     </div>
   );
 }
