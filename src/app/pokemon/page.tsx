@@ -27,6 +27,7 @@ import { EffectCards } from 'swiper/modules';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import { Product } from '../products/page';
+import Link from 'next/link';
 
 const page = () => {
     // const { data: pokemons, isLoading } = useQuery<ResponPoke>({
@@ -55,18 +56,19 @@ const page = () => {
                 {products?.map((data) => {
                     return (
                         <SwiperSlide>
-                            <div className='p-2 flex flex-col items-center'>
-                                <Image
-                                    src={data?.image}
-                                    alt={data?.title}
-                                    className="object-cover"
-                                    width={50}
-                                    height={50}
-                                    priority
-                                />
-                                <p>{data?.title}</p>
-                            </div>
-
+                            <Link href={`/pokemon/${data.title}`}>
+                                <div className='p-2 flex flex-col items-center'>
+                                    <Image
+                                        src={data?.image}
+                                        alt={data?.title}
+                                        className="object-cover"
+                                        width={50}
+                                        height={50}
+                                        priority
+                                    />
+                                    <p>{data?.title}</p>
+                                </div>
+                            </Link>
                         </SwiperSlide>
                     )
                 })}
