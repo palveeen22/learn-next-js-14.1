@@ -4,21 +4,10 @@ import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export interface Product {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-};
+
 
 const Page = () => {
-  const { data: products, isLoading } = useQuery<Product[]>({
+  const { data: products, isLoading } = useQuery<TProduct[]>({
     queryKey: ['products'],
     // Mengambil data dari endpoint yang sesuai
     queryFn: () => fetch('https://fakestoreapi.com/products').then((resp) => resp.json()),
@@ -37,7 +26,7 @@ const Page = () => {
       {!isLoading && (
         <div className='w-full flex'>
           <div className='grid grid-cols-4 gap-4'>
-            {products?.map((product: Product) => (
+            {products?.map((product: TProduct) => (
               <Link href={`/products/${product?.id}`}>
                 <div key={product?.id}>
                   <Image

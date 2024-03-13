@@ -26,7 +26,6 @@ import './styles.css';
 import { EffectCards } from 'swiper/modules';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
-import { Product } from '../products/page';
 import Link from 'next/link';
 
 const page = () => {
@@ -35,7 +34,7 @@ const page = () => {
     //     queryFn: () => fetch('https://pokeapi.co/api/v2/ability').then((resp) => resp.json()),
     // })
 
-    const { data: products, isLoading } = useQuery<Product[]>({
+    const { data: products, isLoading } = useQuery<TProduct[]>({
         queryKey: ['products'],
         // Mengambil data dari endpoint yang sesuai
         queryFn: () => fetch('https://fakestoreapi.com/products').then((resp) => resp.json()),

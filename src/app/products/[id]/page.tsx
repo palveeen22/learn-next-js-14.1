@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { Product } from '../page';
+// import { Product } from '../page';
 
 const Page = ({ params }: { params: { id: number } }) => {
     // Mengubah slug dengan mengganti persen (%) dan angka 20 dengan tanda hubung (-)
